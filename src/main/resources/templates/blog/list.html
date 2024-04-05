@@ -20,15 +20,22 @@
 </header>
 
 <section class="card">
-    <article th:each="blogList : ${blogList}">
-        <h2><span th:text="${blogList.title}"></span></h2>
-        <table>
-            <tr>
-                <td><span th:text="${blogList.blogCode}" hidden></span></td>
-                <td><span th:text="${blogList.content}"></span></td>
-                <td><span th:text="${blogList.commentCode}" hidden></span></td>
-            </tr>
-        </table>
+    <article>
+        <tr th:each="blogList : ${ blogList }">
+            <th th:text="${ menu.menuCode }"></th>
+            <th th:text="${ menu.menuName }"></th>
+            <th th:text="${ menu.menuPrice }"></th>
+            <th th:text="${ menu.categoryCode }"></th>
+            <th th:text="${ menu.orderableStatus }"></th>
+        </tr>
+    </article>
+    <article>
+        <h2>두 번째 포스트</h2>
+        <p>이곳에 포스트 내용이 들어갑니다.</p>
+    </article>
+    <article>
+        <h2>세 번째 포스트</h2>
+        <p>이곳에 포스트 내용이 들어갑니다.</p>
     </article>
 </section>
 
