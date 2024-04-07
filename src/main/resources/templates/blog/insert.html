@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블로그 작성!🎉</title>
+    <link rel="stylesheet" href="insert.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Write a Blog</h1>
+    <form action="/blog/insert" method="post">
+        <div class="form-group">
+            <label for="blogTitle">Title:</label>
+            <input type="text" id="blogTitle" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="blogContent">Content:</label>
+            <textarea id="blogContent" name="content" rows="8" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="blogId">blogId:</label>
+            <input type="text" id="blogId" name="blogId" required>
+        </div>
+        <div class="form-group">
+            <label for="commentCode">commentCode:</label>
+            <select name="commentCode" id="commentCode">
+            </select><br>
+        </div>
+        <div class="form-group">
+            <button type="submit">작성 완료</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    fetch('/comment')
+        .then(res => res.json())
+        .then(data => {
+            const $commentCode = document.getElementById('commentCode');
+
+            for(let index in data) {
+                const $option = document.createElement('option');
+                $option.value = data[index].commentCode;
+                $option.textContent = data[index].commentCode;
+
+                $commentCode.appendChild($option);
+            }
+        });
+</script>
+
+
+</body>
+</html>

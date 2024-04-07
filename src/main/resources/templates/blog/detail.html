@@ -2,33 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Details</title>
+    <link rel="stylesheet" href="detail.css">
+
 </head>
+
 <body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>selected menu</title>
-</head>
-<body>
-<table>
-    <tr>
-        <th>블로그 코드</th>
-        <th>블로그 제목</th>
-        <th>블로그 내용</th>
-        <th>작성자</th>
-        <th>댓글 코드</th>
-    </tr>
-    <tr>
-        <td th:text="${ blog.blogCode }"></td>
-        <td th:text="${ blog.title }"></td>
-        <td th:text="${ blog.content }"></td>
-        <td th:text="${ blog.blogId }"></td>
-        <td th:text="${ blog.commentCode }"></td>
-    </tr>
-</table>
-</body>
-</html>
-</body>
-</html>
+    <div class="container">
+        <h1>Blog Details</h1>
+        <div class="blog-details">
+            <div class="blog-info">
+                <label for="blogCode">블로그 코드:</label>
+                <span id="blogCode" th:text="${ blog.blogCode }"></span>
+            </div>
+            <div class="blog-info">
+                <label for="blogTitle">블로그 제목:</label>
+                <span id="blogTitle" th:text="${ blog.title }"></span>
+            </div>
+            <div class="blog-info">
+                <label for="blogContent">블로그 내용:</label>
+                <span id="blogContent" th:text="${ blog.content }"></span>
+            </div>
+            <div class="blog-info">
+                <label for="blogId">작성자:</label>
+                <span id="blogId" th:text="${ blog.blogId }"></span>
+            </div>
+            <div class="blog-info">
+                <label for="commentCode">댓글 코드:</label>
+                <span id="commentCode" th:text="${ blog.commentCode }"></span>
+            </div>
+        </div>
+    </div>
+
+    </body>
+    </html>

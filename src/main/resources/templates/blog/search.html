@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>search result</title>
+</head>
+<body>
+<h1>[[${title}]]을 포함하는 블로그 목록입니당✌</h1>
+<table>
+    <tr>
+        <th>블로그 코드</th>
+        <th>제목</th>
+        <th>내용</th>
+    </tr>
+    <tr th:each="blog : ${ blogList }">
+        <th th:text="${ blog.blogCode }"></th>
+        <th th:text="${ blog.title }"></th>
+        <th th:text="${ blog.content }"></th>
+    </tr>
+</table>
+</body>
+</html>

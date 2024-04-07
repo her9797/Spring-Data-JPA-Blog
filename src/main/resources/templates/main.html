@@ -6,6 +6,8 @@
     <title>나의 블로그</title>
     <link rel="stylesheet" href="main.css">
 
+    <!-- jQuery CDN 추가 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <header>
@@ -13,11 +15,21 @@
     <nav>
         <ul>
             <li><a href="#">홈</a></li>
-            <li><a href="#">글쓰기</a></li>
-            <button onclick="location.href='/blog/1'">특정 메뉴 목록 보기</button>
+            <li><a href="/blog/insert">글쓰기</a></li>
+            <button onclick="location.href='/detail/1'">특정 메뉴 목록 보기</button>
+            <button onclick="location.href='/blog/modify'">글 수정하기</button>
+            <button onclick="location.href='/blog/delete'">글 삭제하기</button>
         </ul>
     </nav>
 </header>
+
+<!-- 검색 입력란 추가 -->
+<div class="search-container">
+    <form action="/blog/search">
+    <input type="text" id="title" name="title" placeholder="검색어를 입력하세요...">
+    <button type="button" >검색</button>
+    </form>
+</div>
 
 <section class="card">
     <article th:each="blogList : ${blogList}">
@@ -35,5 +47,7 @@
 <footer>
     <p>&copy; 2024 나의 블로그</p>
 </footer>
+
+
 </body>
 </html>

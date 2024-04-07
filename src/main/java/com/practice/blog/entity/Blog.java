@@ -26,6 +26,37 @@ public class Blog {
     protected Blog() {
     }
 
+    /** builder() */
+
+    public Blog title(String val){
+
+        this.title = val;
+        return this;
+    }
+
+    public Blog content(String val) {
+
+        this.content = val;
+        return this;
+    }
+
+    public Blog blogId(String val) {
+
+        this.blogId = val;
+        return this;
+    }
+
+    public Blog commentCode(int val){
+
+        this.commentCode = val;
+        return this;
+    }
+
+    public Blog builder(){
+        return new Blog(blogCode, title, content, blogId, commentCode);
+    }
+
+
     public Blog(int blogCode, String title, String content, String blogId, int commentCode) {
         this.blogCode = blogCode;
         this.title = title;

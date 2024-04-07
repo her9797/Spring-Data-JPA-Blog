@@ -1,9 +1,13 @@
 package com.practice.blog.service;
 
 import com.practice.blog.dto.BlogDTO;
+import com.practice.blog.dto.CommentDTO;
 import com.practice.blog.entity.Blog;
+import com.practice.blog.entity.Comment;
 import com.practice.blog.repository.BlogRepository;
 import com.practice.blog.repository.CommentRepository;
+import jakarta.transaction.Transactional;
+import jdk.jfr.Category;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -43,5 +47,51 @@ public class BlogService {
                 .map(blog -> modelMapper.map(blog, BlogDTO.class))
                 .collect(Collectors.toList());
 
+    }
+
+    public List<CommentDTO> findAllComment() {
+        List<Comment> commentList = commentRepository.findAllComment();
+
+        return commentList.stream()
+                .map(comment -> modelMapper.map(comment, CommentDTO.class))
+                .collect(Collectors.toList());
+
+    }
+
+    /** 블로그 신규 등록 : save() */
+    public void insert(BlogDTO blogDTO) {
+
+        blogRepository.save(modelMapper.map(blogDTO, Blog.class));
+
+    }
+
+    /** 블로그 수정 */
+    @Transactional
+    public void modifyBlog(BlogDTO blogDTO) {
+
+
+        Blog foundBlog = blogRepository.findById(blogDTO.getBlogCode()).orElseThrow(IllegalAccessError::new);
+
+        // Entity 클래스 내부 builder
+        foundBlog = foundBlog.content(blogDTO.getContent()).builder();
+
+    }
+
+    /** 블로그 삭제 */
+    public void deleteBlog(Integer blogCode) {
+
+        blogRepository.deleteById(blogCode);
+
+    }
+
+
+    /** 블로그 검색 */
+    public List<BlogDTO> findByBlog(String title) {
+
+        List<Blog> blogList = blogRepository.findByTitleContaining(title);
+
+        return blogList.stream()
+                .map(blog -> modelMapper.map(blog, BlogDTO.class))
+                .collect(Collectors.toList());
     }
 }
