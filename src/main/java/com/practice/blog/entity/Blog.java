@@ -20,8 +20,6 @@ public class Blog {
     @Column(name = "blog_id")
     private String blogId;
 
-    @Column(name = "comment_code")
-    private int commentCode;
 
     protected Blog() {
     }
@@ -46,23 +44,17 @@ public class Blog {
         return this;
     }
 
-    public Blog commentCode(int val){
-
-        this.commentCode = val;
-        return this;
-    }
 
     public Blog builder(){
-        return new Blog(blogCode, title, content, blogId, commentCode);
+        return new Blog(blogCode, title, content, blogId);
     }
 
 
-    public Blog(int blogCode, String title, String content, String blogId, int commentCode) {
+    public Blog(int blogCode, String title, String content, String blogId) {
         this.blogCode = blogCode;
         this.title = title;
         this.content = content;
         this.blogId = blogId;
-        this.commentCode = commentCode;
     }
 
     public int getBlogCode() {
@@ -81,9 +73,7 @@ public class Blog {
         return blogId;
     }
 
-    public int getCommentCode() {
-        return commentCode;
-    }
+
 
     @Override
     public String toString() {
@@ -92,7 +82,6 @@ public class Blog {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", blogId='" + blogId + '\'' +
-                ", commentCode=" + commentCode +
                 '}';
     }
 }

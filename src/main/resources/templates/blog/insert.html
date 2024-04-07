@@ -24,31 +24,10 @@
             <input type="text" id="blogId" name="blogId" required>
         </div>
         <div class="form-group">
-            <label for="commentCode">commentCode:</label>
-            <select name="commentCode" id="commentCode">
-            </select><br>
-        </div>
-        <div class="form-group">
             <button type="submit">작성 완료</button>
         </div>
     </form>
 </div>
-
-<script>
-    fetch('/comment')
-        .then(res => res.json())
-        .then(data => {
-            const $commentCode = document.getElementById('commentCode');
-
-            for(let index in data) {
-                const $option = document.createElement('option');
-                $option.value = data[index].commentCode;
-                $option.textContent = data[index].commentCode;
-
-                $commentCode.appendChild($option);
-            }
-        });
-</script>
 
 
 </body>

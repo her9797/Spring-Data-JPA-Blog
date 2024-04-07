@@ -18,6 +18,6 @@ public class BlogDTO {
 
     private String blogId;
 
-    private int commentCode;
+
 
 }

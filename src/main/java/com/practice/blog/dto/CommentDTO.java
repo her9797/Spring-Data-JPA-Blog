@@ -15,10 +15,12 @@ public class CommentDTO {
 
     private int commentCode;
 
-    private String commentText;
+    private String comment;
 
-    private Date date;
+    private String commentDate;
 
     private String cmtId;
+
+    private String blogCode;
 }
 

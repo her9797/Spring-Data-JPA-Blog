@@ -31,22 +31,49 @@
     </form>
 </div>
 
+
 <section class="card">
     <article th:each="blogList : ${blogList}">
-        <h2><span th:text="${blogList.title}"></span></h2>
+        <h2><span th:text="${blogList.title}" ></span></h2>
         <table>
             <tr>
                 <td><span th:text="${blogList.blogCode}" hidden></span></td>
                 <td><span th:text="${blogList.content}"></span></td>
-                <td><span th:text="${blogList.commentCode}" hidden></span></td>
             </tr>
         </table>
     </article>
 </section>
 
+<div class="comment-container">
+    <form action="/comment/insert" method="post">
+        <div class="form-group">
+            <label for="comment">comment:</label>
+            <input type="text" id="comment" name="comment">
+        </div>
+        <div class="form-group">
+            <label for="cmtId">cmtId:</label>
+            <input type="text" id="cmtId" name="cmtId" >
+        </div>
+        <div class="form-group">
+            <label for="commentDate">commentDate:</label>
+            <input type="date" id="commentDate" name="commentDate">
+        </div>
+        <div class="form-group">
+            <label for="blogCode">blogCode:</label>
+            <input type="text" id="blogCode" name="blogCode">
+        </div>
+        <div class="form-group">
+            <button type="submit">작성 완료</button>
+        </div>
+    </form>
+</div>
+
+
 <footer>
     <p>&copy; 2024 나의 블로그</p>
 </footer>
+
+
 
 
 </body>

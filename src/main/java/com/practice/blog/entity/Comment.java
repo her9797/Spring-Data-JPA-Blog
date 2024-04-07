@@ -14,50 +14,58 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentCode;
 
-    @Column(name = "comment_text")
-    private String commentText;
+    @Column(name = "comment")
+    private String comment;
 
     @Column(name = "comment_date")
-    private Date date;
+    private String commentDate;
 
     @Column(name = "comment_id")
     private String cmtId;
 
+    @Column(name = "blog_code")
+    private int blogCode;
 
 
     protected Comment() {
     }
 
-    public Comment(int commentCode, String commentText, Date date, String cmtId) {
+    public Comment(int commentCode, String comment, String commentDate, String cmtId, int blogCode) {
         this.commentCode = commentCode;
-        this.commentText = commentText;
-        this.date = date;
+        this.comment = comment;
+        this.commentDate = commentDate;
         this.cmtId = cmtId;
+        this.blogCode = blogCode;
     }
 
     public int getCommentCode() {
         return commentCode;
     }
 
-    public String getCommentText() {
-        return commentText;
+    public String getComment() {
+        return comment;
     }
 
-    public Date getDate() {
-        return date;
+    public String getCommentDate() {
+        return commentDate;
     }
 
     public String getCmtId() {
         return cmtId;
     }
 
+    public int getBlogCode() {
+        return blogCode;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
                 "commentCode=" + commentCode +
-                ", comment='" + commentText + '\'' +
-                ", date=" + date +
+                ", comment='" + comment + '\'' +
+                ", commentDate=" + commentDate +
                 ", cmtId='" + cmtId + '\'' +
+                ", blogCode=" + blogCode +
                 '}';
     }
 }

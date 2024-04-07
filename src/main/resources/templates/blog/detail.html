@@ -12,7 +12,7 @@
     <div class="container">
         <h1>Blog Details</h1>
         <div class="blog-details">
-            <div class="blog-info">
+            <div class="blog-info" hidden>
                 <label for="blogCode">블로그 코드:</label>
                 <span id="blogCode" th:text="${ blog.blogCode }"></span>
             </div>
@@ -28,12 +28,40 @@
                 <label for="blogId">작성자:</label>
                 <span id="blogId" th:text="${ blog.blogId }"></span>
             </div>
-            <div class="blog-info">
-                <label for="commentCode">댓글 코드:</label>
-                <span id="commentCode" th:text="${ blog.commentCode }"></span>
-            </div>
+            <table>
+                <caption>댓글</caption>
+                <thead>
+                <tr>
+                    <th>댓글 내용</th>
+                    <th>댓글 작성일</th>
+                    <th>댓글 ID</th>
+                </tr>
+                </thead>
+                <tbody id="commentList"></tbody>
+            </table>
+
+
         </div>
     </div>
+
+    <script>
+        fetch('/commentByBlog')
+            .then(res => res.json())
+            .then(data => {
+                const commentList = document.getElementById('commentList');
+
+                data.forEach(comment => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${comment.comment}</td>
+                        <td>${comment.commentDate}</td>
+                        <td>${comment.cmtId}</td>
+                    `;
+                    commentList.appendChild(row);
+                });
+            });
+    </script>
+
 
     </body>
     </html>

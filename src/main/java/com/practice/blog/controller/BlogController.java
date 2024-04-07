@@ -20,6 +20,7 @@ public class BlogController {
         this.blogService = blogService;
     }
 
+
     /** 상세 조회 */
     @GetMapping("/detail/{blogCode}")
     public String findBlogByCode(@PathVariable int blogCode, Model model){
