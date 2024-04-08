@@ -1,5 +1,6 @@
 package com.practice.blog.controller;
 
+import com.practice.blog.config.SessionData;
 import com.practice.blog.dto.BlogDTO;
 import com.practice.blog.dto.CommentDTO;
 import com.practice.blog.entity.Comment;
@@ -16,8 +17,11 @@ public class BlogController {
 
     private final BlogService blogService;
 
-    public BlogController(BlogService blogService){
+    private final SessionData sessionData;
+
+    public BlogController(BlogService blogService, SessionData sessionData){
         this.blogService = blogService;
+        this.sessionData = sessionData;
     }
 
 
@@ -28,6 +32,7 @@ public class BlogController {
         BlogDTO blog = blogService.findBlogByBlogCode(blogCode);
 
         model.addAttribute("blog", blog);
+
 
         return "/blog/detail";
     }
@@ -40,6 +45,8 @@ public class BlogController {
 
         model.addAttribute("blogList", blogList);
 
+
+
         System.out.println(blogList);
         return "main";
 
@@ -50,12 +57,6 @@ public class BlogController {
     public void insertPage(){}
 
 
-    /** fetch 댓글코드 조회 : 수정해야함 */
-    @GetMapping(value = "/comment", produces = "application/json; charset=UTF-8")
-    @ResponseBody
-    public List<CommentDTO> findCommentList(){
-        return blogService.findAllComment();
-    }
 
 
     /** 신규 블로그 등록하기 */

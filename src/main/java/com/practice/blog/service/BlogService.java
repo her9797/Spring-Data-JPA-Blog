@@ -1,5 +1,6 @@
 package com.practice.blog.service;
 
+import com.practice.blog.config.SessionData;
 import com.practice.blog.dto.BlogDTO;
 import com.practice.blog.dto.CommentDTO;
 import com.practice.blog.entity.Blog;
@@ -9,6 +10,7 @@ import com.practice.blog.repository.CommentRepository;
 import jakarta.transaction.Transactional;
 import jdk.jfr.Category;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -24,16 +26,22 @@ public class BlogService {
 
     private final CommentRepository commentRepository;
 
-    public BlogService(BlogRepository blogRepository, ModelMapper modelMapper, CommentRepository commentRepository) {
+    private final SessionData sessionData;
+
+    public BlogService(BlogRepository blogRepository, ModelMapper modelMapper, CommentRepository commentRepository, SessionData sessionData) {
         this.blogRepository = blogRepository;
         this.modelMapper = modelMapper;
         this.commentRepository = commentRepository;
+        this.sessionData = sessionData;
     }
 
     /** 블로그 상세 조회  : findById() */
     public BlogDTO findBlogByBlogCode(int blogCode) {
 
         Blog foundBlog = blogRepository.findById(blogCode).orElseThrow(IllegalAccessError::new);
+
+
+        sessionData.setSessionAttribute("blogCode", blogCode);
 
         return modelMapper.map(foundBlog, BlogDTO.class);
     }
@@ -45,15 +53,6 @@ public class BlogService {
 
         return blogList.stream()
                 .map(blog -> modelMapper.map(blog, BlogDTO.class))
-                .collect(Collectors.toList());
-
-    }
-
-    public List<CommentDTO> findAllComment() {
-        List<Comment> commentList = commentRepository.findAllComment();
-
-        return commentList.stream()
-                .map(comment -> modelMapper.map(comment, CommentDTO.class))
                 .collect(Collectors.toList());
 
     }

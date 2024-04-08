@@ -22,9 +22,6 @@ public class Blog {
     @Column(name = "blog_id")
     private String blogId;
 
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
-    private List<Comment> comments;
-
 
     protected Blog() {
     }
@@ -52,11 +49,11 @@ public class Blog {
 
 
     public Blog builder(){
-        return new Blog(blogCode, title, content, blogId, comments);
+        return new Blog(blogCode, title, content, blogId);
     }
 
 
-    public Blog(int blogCode, String title, String content, String blogId, List<Comment> comments) {
+    public Blog(int blogCode, String title, String content, String blogId) {
         this.blogCode = blogCode;
         this.title = title;
         this.content = content;
@@ -79,9 +76,7 @@ public class Blog {
         return blogId;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
+
 
     @Override
     public String toString() {
@@ -90,7 +85,6 @@ public class Blog {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", blogId='" + blogId + '\'' +
-                ", comments=" + comments +
                 '}';
     }
 }
