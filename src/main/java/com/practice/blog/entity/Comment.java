@@ -23,14 +23,15 @@ public class Comment {
     @Column(name = "comment_id")
     private String cmtId;
 
-    @Column(name = "blog_code")
-    private int blogCode;
+    @ManyToOne
+    @JoinColumn(name = "blog_code")
+    private Blog blogCode;
 
 
     protected Comment() {
     }
 
-    public Comment(int commentCode, String comment, String commentDate, String cmtId, int blogCode) {
+    public Comment(int commentCode, String comment, String commentDate, String cmtId, Blog blogCode) {
         this.commentCode = commentCode;
         this.comment = comment;
         this.commentDate = commentDate;
@@ -54,7 +55,7 @@ public class Comment {
         return cmtId;
     }
 
-    public int getBlogCode() {
+    public Blog getBlogCode() {
         return blogCode;
     }
 
